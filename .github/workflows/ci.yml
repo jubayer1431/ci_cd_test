@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main # Deploy whenever code is pushed to the master branch
 
 jobs:
   deploy:
@@ -21,13 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build and export app
-        run: |
-          npm run build
-          npm run export
+      - name: Build app
+        run: npm run build # This will now handle both the build and static export
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: ./out # The `out` directory will be automatically created
