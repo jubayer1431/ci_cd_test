@@ -24,6 +24,9 @@ jobs:
       - name: Build app
         run: npm run build # This will now handle both the build and static export
 
+      - name: Disable Jekyll
+        run: echo "" > ./out/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
