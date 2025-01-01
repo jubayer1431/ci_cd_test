@@ -1,10 +1,5 @@
 import { use } from 'react';
-
-async function fetchUsers() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users');
-  if (!res.ok) throw new Error('Failed to fetch users');
-  return res.json();
-}
+import { fetchUsers } from '@/lib/fetchUsers';
 
 export default function UserCards() {
   const users = use(fetchUsers());
@@ -14,7 +9,7 @@ export default function UserCards() {
       {users.map((user) => (
         <div key={user.id} className="bg-white shadow-md rounded-lg overflow-hidden">
           <div className="p-6">
-            <h2 className="text-xl font-semibold mb-2">{user.name}</h2>
+            <h2 className="text-xl font-semibold mb-2 text-emerald-600">{user.name}</h2>
             <p className="text-gray-600 mb-4">@{user.username}</p>
             <div className="mb-4">
               <p className="text-gray-700">
